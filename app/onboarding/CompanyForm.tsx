@@ -9,6 +9,8 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { Globe } from 'lucide-react';
 import { countryList } from '../utils/countriesList';
 import { Textarea } from '@/components/ui/textarea';
+import { UploadDropzone } from '@/components/general/UploadThingReExport';
+
 const CompanyForm = () => {
 
   const form =useForm<z.infer<typeof companySchema>>({
@@ -124,6 +126,33 @@ const CompanyForm = () => {
                   <FormLabel>About</FormLabel>
                   <FormControl>
                     <Textarea placeholder="Tell us about your company" {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    This is your public display name.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="logo"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Company Logo</FormLabel>
+                  <FormControl>
+                  <UploadDropzone
+                      endpoint="imageUploader"
+                      onClientUploadComplete={(res) => {
+                        field.onChange(res[0].ufsUrl);
+                        // toast.success("Logo uploaded successfully!");
+                      }}
+                      onUploadError={() => {
+                        // toast.error("Something went wrong. Please try again.");
+                        console.log("Something went wrong. Please try again.");
+                      }}
+                      className="ut-button:bg-primary ut-button:text-white ut-button:hover:bg-primary/90 ut-label:text-muted-foreground ut-allowed-content:text-muted-foreground border-primary"
+                    />
                   </FormControl>
                   <FormDescription>
                     This is your public display name.
