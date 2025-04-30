@@ -1,2 +1,3 @@
 this project use PNPM 
 pnpm create next-app@latest
+pnpm dlx prisma db push 
