@@ -37,7 +37,10 @@ const  LoginForm = async() => {
                   text="Login with Github" 
                 />
               </form>
-              <form>
+              <form action={async () => {
+                  "use server"; 
+                  await signIn("google")
+                }}>
                 <GeneralSubmitButton 
                   variant='outline' 
                   width='w-full' 
