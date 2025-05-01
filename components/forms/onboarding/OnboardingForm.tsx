@@ -3,8 +3,9 @@ import Image from 'next/image'
 import React, { use, useState } from 'react'
 import Logo from "@/public/logo.png"
 import { Card, CardContent } from '@/components/ui/card'
-import UserTypeForm from '@/app/onboarding/UserTypeForm'
-import CompanyForm from '@/app/onboarding/CompanyForm'
+import UserTypeForm from '@/components/forms/onboarding/UserTypeForm'
+import CompanyForm from '@/components/forms/onboarding/CompanyForm'
+import JobSeekerForm from './JobSeekerForm'
 
 
 type UserSelectionType = "company" | "jobSeeker" | null
@@ -27,7 +28,7 @@ const OnboardingForm = () => {
         return userType === "company" ? (
           <CompanyForm />
         ): (
-          <p>Job Seeker form</p>
+          <JobSeekerForm />
         )
       default:
         return null

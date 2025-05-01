@@ -1,16 +1,16 @@
 import React, { use, useState } from 'react'
 import {zodResolver} from '@hookform/resolvers/zod'
-import { companySchema } from '../utils/zodSchemas';
+import { companySchema } from '../../../app/utils/zodSchemas';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Globe, Loader2, XIcon } from 'lucide-react';
-import { countryList } from '../utils/countriesList';
+import { countryList } from '../../../app/utils/countriesList';
 import { Textarea } from '@/components/ui/textarea';
 import { UploadDropzone } from '@/components/general/UploadThingReExport';
-import { createCompany } from '../action';
+import { createCompany } from '../../../app/action';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
