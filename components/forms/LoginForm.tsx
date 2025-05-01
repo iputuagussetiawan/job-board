@@ -27,7 +27,7 @@ const  LoginForm = async() => {
               <form action={async () => {
                 "use server";
                 await signIn("github",{
-                  redirectTo: "/"
+                  redirectTo: "/onboarding"
                 });
               }}>
                 <GeneralSubmitButton 
@@ -39,7 +39,9 @@ const  LoginForm = async() => {
               </form>
               <form action={async () => {
                   "use server"; 
-                  await signIn("google")
+                  await signIn("google", {
+                    redirectTo: "/onboarding"
+                  })
                 }}>
                 <GeneralSubmitButton 
                   variant='outline' 
