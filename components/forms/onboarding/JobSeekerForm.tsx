@@ -11,6 +11,7 @@ import Image from 'next/image'
 import React, { use, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import PdfImage from '../../../public/pdf.png'
 
 const JobSeekerForm = () => {
   const form =useForm<z.infer<typeof jobSeekerSchema>>({
@@ -76,7 +77,7 @@ const JobSeekerForm = () => {
                     <div>
                       {field.value ? (
                         <div className='relative w-fit'>
-                          <Image src={field.value} alt='your resume' width={100} height={100} className='rounded-lg' />
+                          <Image src={PdfImage} alt='your resume' width={100} height={100} className='rounded-lg' />
                           <Button
                             type='button'
                             variant="destructive"
