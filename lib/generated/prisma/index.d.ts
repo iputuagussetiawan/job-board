@@ -1531,6 +1531,7 @@ export namespace Prisma {
     email: string | null
     emailVerified: Date | null
     image: string | null
+    stripeCustomerId: string | null
     onboradingCompleted: boolean | null
     userType: $Enums.UserType | null
     createdAt: Date | null
@@ -1543,6 +1544,7 @@ export namespace Prisma {
     email: string | null
     emailVerified: Date | null
     image: string | null
+    stripeCustomerId: string | null
     onboradingCompleted: boolean | null
     userType: $Enums.UserType | null
     createdAt: Date | null
@@ -1555,6 +1557,7 @@ export namespace Prisma {
     email: number
     emailVerified: number
     image: number
+    stripeCustomerId: number
     onboradingCompleted: number
     userType: number
     createdAt: number
@@ -1569,6 +1572,7 @@ export namespace Prisma {
     email?: true
     emailVerified?: true
     image?: true
+    stripeCustomerId?: true
     onboradingCompleted?: true
     userType?: true
     createdAt?: true
@@ -1581,6 +1585,7 @@ export namespace Prisma {
     email?: true
     emailVerified?: true
     image?: true
+    stripeCustomerId?: true
     onboradingCompleted?: true
     userType?: true
     createdAt?: true
@@ -1593,6 +1598,7 @@ export namespace Prisma {
     email?: true
     emailVerified?: true
     image?: true
+    stripeCustomerId?: true
     onboradingCompleted?: true
     userType?: true
     createdAt?: true
@@ -1678,6 +1684,7 @@ export namespace Prisma {
     email: string
     emailVerified: Date | null
     image: string | null
+    stripeCustomerId: string | null
     onboradingCompleted: boolean
     userType: $Enums.UserType | null
     createdAt: Date
@@ -1707,6 +1714,7 @@ export namespace Prisma {
     email?: boolean
     emailVerified?: boolean
     image?: boolean
+    stripeCustomerId?: boolean
     onboradingCompleted?: boolean
     userType?: boolean
     createdAt?: boolean
@@ -1724,6 +1732,7 @@ export namespace Prisma {
     email?: boolean
     emailVerified?: boolean
     image?: boolean
+    stripeCustomerId?: boolean
     onboradingCompleted?: boolean
     userType?: boolean
     createdAt?: boolean
@@ -1736,6 +1745,7 @@ export namespace Prisma {
     email?: boolean
     emailVerified?: boolean
     image?: boolean
+    stripeCustomerId?: boolean
     onboradingCompleted?: boolean
     userType?: boolean
     createdAt?: boolean
@@ -1748,13 +1758,14 @@ export namespace Prisma {
     email?: boolean
     emailVerified?: boolean
     image?: boolean
+    stripeCustomerId?: boolean
     onboradingCompleted?: boolean
     userType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "onboradingCompleted" | "userType" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "stripeCustomerId" | "onboradingCompleted" | "userType" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
@@ -1779,6 +1790,7 @@ export namespace Prisma {
       email: string
       emailVerified: Date | null
       image: string | null
+      stripeCustomerId: string | null
       onboradingCompleted: boolean
       userType: $Enums.UserType | null
       createdAt: Date
@@ -2215,6 +2227,7 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly emailVerified: FieldRef<"User", 'DateTime'>
     readonly image: FieldRef<"User", 'String'>
+    readonly stripeCustomerId: FieldRef<"User", 'String'>
     readonly onboradingCompleted: FieldRef<"User", 'Boolean'>
     readonly userType: FieldRef<"User", 'UserType'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
@@ -9408,6 +9421,7 @@ export namespace Prisma {
     email: 'email',
     emailVerified: 'emailVerified',
     image: 'image',
+    stripeCustomerId: 'stripeCustomerId',
     onboradingCompleted: 'onboradingCompleted',
     userType: 'userType',
     createdAt: 'createdAt',
@@ -9637,6 +9651,7 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     image?: StringNullableFilter<"User"> | string | null
+    stripeCustomerId?: StringNullableFilter<"User"> | string | null
     onboradingCompleted?: BoolFilter<"User"> | boolean
     userType?: EnumUserTypeNullableFilter<"User"> | $Enums.UserType | null
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -9653,6 +9668,7 @@ export namespace Prisma {
     email?: SortOrder
     emailVerified?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
+    stripeCustomerId?: SortOrderInput | SortOrder
     onboradingCompleted?: SortOrder
     userType?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -9672,6 +9688,7 @@ export namespace Prisma {
     name?: StringNullableFilter<"User"> | string | null
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     image?: StringNullableFilter<"User"> | string | null
+    stripeCustomerId?: StringNullableFilter<"User"> | string | null
     onboradingCompleted?: BoolFilter<"User"> | boolean
     userType?: EnumUserTypeNullableFilter<"User"> | $Enums.UserType | null
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -9688,6 +9705,7 @@ export namespace Prisma {
     email?: SortOrder
     emailVerified?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
+    stripeCustomerId?: SortOrderInput | SortOrder
     onboradingCompleted?: SortOrder
     userType?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -9706,6 +9724,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     emailVerified?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     image?: StringNullableWithAggregatesFilter<"User"> | string | null
+    stripeCustomerId?: StringNullableWithAggregatesFilter<"User"> | string | null
     onboradingCompleted?: BoolWithAggregatesFilter<"User"> | boolean
     userType?: EnumUserTypeNullableWithAggregatesFilter<"User"> | $Enums.UserType | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -10164,6 +10183,7 @@ export namespace Prisma {
     email: string
     emailVerified?: Date | string | null
     image?: string | null
+    stripeCustomerId?: string | null
     onboradingCompleted?: boolean
     userType?: $Enums.UserType | null
     createdAt?: Date | string
@@ -10180,6 +10200,7 @@ export namespace Prisma {
     email: string
     emailVerified?: Date | string | null
     image?: string | null
+    stripeCustomerId?: string | null
     onboradingCompleted?: boolean
     userType?: $Enums.UserType | null
     createdAt?: Date | string
@@ -10196,6 +10217,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     onboradingCompleted?: BoolFieldUpdateOperationsInput | boolean
     userType?: NullableEnumUserTypeFieldUpdateOperationsInput | $Enums.UserType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10212,6 +10234,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     onboradingCompleted?: BoolFieldUpdateOperationsInput | boolean
     userType?: NullableEnumUserTypeFieldUpdateOperationsInput | $Enums.UserType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10228,6 +10251,7 @@ export namespace Prisma {
     email: string
     emailVerified?: Date | string | null
     image?: string | null
+    stripeCustomerId?: string | null
     onboradingCompleted?: boolean
     userType?: $Enums.UserType | null
     createdAt?: Date | string
@@ -10240,6 +10264,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     onboradingCompleted?: BoolFieldUpdateOperationsInput | boolean
     userType?: NullableEnumUserTypeFieldUpdateOperationsInput | $Enums.UserType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10252,6 +10277,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     onboradingCompleted?: BoolFieldUpdateOperationsInput | boolean
     userType?: NullableEnumUserTypeFieldUpdateOperationsInput | $Enums.UserType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10852,6 +10878,7 @@ export namespace Prisma {
     email?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
+    stripeCustomerId?: SortOrder
     onboradingCompleted?: SortOrder
     userType?: SortOrder
     createdAt?: SortOrder
@@ -10864,6 +10891,7 @@ export namespace Prisma {
     email?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
+    stripeCustomerId?: SortOrder
     onboradingCompleted?: SortOrder
     userType?: SortOrder
     createdAt?: SortOrder
@@ -10876,6 +10904,7 @@ export namespace Prisma {
     email?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
+    stripeCustomerId?: SortOrder
     onboradingCompleted?: SortOrder
     userType?: SortOrder
     createdAt?: SortOrder
@@ -12103,6 +12132,7 @@ export namespace Prisma {
     email: string
     emailVerified?: Date | string | null
     image?: string | null
+    stripeCustomerId?: string | null
     onboradingCompleted?: boolean
     userType?: $Enums.UserType | null
     createdAt?: Date | string
@@ -12118,6 +12148,7 @@ export namespace Prisma {
     email: string
     emailVerified?: Date | string | null
     image?: string | null
+    stripeCustomerId?: string | null
     onboradingCompleted?: boolean
     userType?: $Enums.UserType | null
     createdAt?: Date | string
@@ -12149,6 +12180,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     onboradingCompleted?: BoolFieldUpdateOperationsInput | boolean
     userType?: NullableEnumUserTypeFieldUpdateOperationsInput | $Enums.UserType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12164,6 +12196,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     onboradingCompleted?: BoolFieldUpdateOperationsInput | boolean
     userType?: NullableEnumUserTypeFieldUpdateOperationsInput | $Enums.UserType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12179,6 +12212,7 @@ export namespace Prisma {
     email: string
     emailVerified?: Date | string | null
     image?: string | null
+    stripeCustomerId?: string | null
     onboradingCompleted?: boolean
     userType?: $Enums.UserType | null
     createdAt?: Date | string
@@ -12194,6 +12228,7 @@ export namespace Prisma {
     email: string
     emailVerified?: Date | string | null
     image?: string | null
+    stripeCustomerId?: string | null
     onboradingCompleted?: boolean
     userType?: $Enums.UserType | null
     createdAt?: Date | string
@@ -12225,6 +12260,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     onboradingCompleted?: BoolFieldUpdateOperationsInput | boolean
     userType?: NullableEnumUserTypeFieldUpdateOperationsInput | $Enums.UserType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12240,6 +12276,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     onboradingCompleted?: BoolFieldUpdateOperationsInput | boolean
     userType?: NullableEnumUserTypeFieldUpdateOperationsInput | $Enums.UserType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12297,6 +12334,7 @@ export namespace Prisma {
     email: string
     emailVerified?: Date | string | null
     image?: string | null
+    stripeCustomerId?: string | null
     onboradingCompleted?: boolean
     userType?: $Enums.UserType | null
     createdAt?: Date | string
@@ -12312,6 +12350,7 @@ export namespace Prisma {
     email: string
     emailVerified?: Date | string | null
     image?: string | null
+    stripeCustomerId?: string | null
     onboradingCompleted?: boolean
     userType?: $Enums.UserType | null
     createdAt?: Date | string
@@ -12379,6 +12418,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     onboradingCompleted?: BoolFieldUpdateOperationsInput | boolean
     userType?: NullableEnumUserTypeFieldUpdateOperationsInput | $Enums.UserType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12394,6 +12434,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     onboradingCompleted?: BoolFieldUpdateOperationsInput | boolean
     userType?: NullableEnumUserTypeFieldUpdateOperationsInput | $Enums.UserType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12409,6 +12450,7 @@ export namespace Prisma {
     email: string
     emailVerified?: Date | string | null
     image?: string | null
+    stripeCustomerId?: string | null
     onboradingCompleted?: boolean
     userType?: $Enums.UserType | null
     createdAt?: Date | string
@@ -12424,6 +12466,7 @@ export namespace Prisma {
     email: string
     emailVerified?: Date | string | null
     image?: string | null
+    stripeCustomerId?: string | null
     onboradingCompleted?: boolean
     userType?: $Enums.UserType | null
     createdAt?: Date | string
@@ -12455,6 +12498,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     onboradingCompleted?: BoolFieldUpdateOperationsInput | boolean
     userType?: NullableEnumUserTypeFieldUpdateOperationsInput | $Enums.UserType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12470,6 +12514,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     onboradingCompleted?: BoolFieldUpdateOperationsInput | boolean
     userType?: NullableEnumUserTypeFieldUpdateOperationsInput | $Enums.UserType | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

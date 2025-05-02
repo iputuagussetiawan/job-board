@@ -18,34 +18,60 @@ import { XIcon } from "lucide-react";
 import { UploadDropzone } from "../general/UploadThingReExport";
 import { useState } from "react";
 import { JobListingDurationSelector } from "../general/JobListingDurationSelector";
+import { createJob } from "@/app/action";
 
+interface CreateJobFormProps {
+  companyName: string;
+  companyLocation: string;
+  companyAbout: string;
+  companyLogo: string;
+  companyXAccount: string | null;
+  companyWebsite: string;
+}
 
-export function CreateJobForm() {
+export function CreateJobForm({
+  companyName,
+  companyLocation,
+  companyAbout,
+  companyLogo,
+  companyXAccount,
+  companyWebsite,
+}: CreateJobFormProps) {
   const form = useForm<z.infer<typeof jobSchema>>({
     resolver: zodResolver(jobSchema),
     defaultValues: {
-      jobTitle: "",
+      benefits: [],
+      companyDescription: companyAbout,
+      companyLocation: companyLocation,
+      companyName: companyName,
+      companyWebsite: companyWebsite,
+      companyXAccount: companyXAccount || "",
       employmentType: "",
+      jobDescription: "",
+      jobTitle: "",
       location: "",
       salaryFrom: 0,
       salaryTo: 0,
-      jobDescription: "",
-      benefits: [],
-      companyName: "",
-      companyLocation: "",
-      companyLogo: "",
-      companyWebsite: "",
-      companyXAccount: "",
-      companyDescription: "",
+      companyLogo: companyLogo,
       listingDuration: 30,
-
     },
   });
 
   const [pending, setPending] = useState(false);
+
+  async function onSubmit(values: z.infer<typeof jobSchema>) {
+    try {
+      setPending(true);
+      await createJob(values);
+    } catch {
+      // toast.error("Something went wrong. Please try again.");
+    } finally {
+      setPending(false);
+    }
+  }
   
   return <Form {...form}>
-    <form className="col-span-1 lg:col-span-2  flex flex-col gap-8">
+    <form onSubmit={form.handleSubmit(onSubmit)} className="col-span-1 lg:col-span-2  flex flex-col gap-8">
     <Card>
       <CardHeader>
         <CardTitle>Job Information</CardTitle>
@@ -337,13 +363,13 @@ export function CreateJobForm() {
                         <UploadDropzone
                           endpoint="imageUploader"
                           onClientUploadComplete={(res) => {
-                            field.onChange(res[0].url);
-                            toast.success("Logo uploaded successfully!");
+                            field.onChange(res[0].ufsUrl);
+                            // toast.success("Logo uploaded successfully!");
                           }}
                           onUploadError={() => {
-                            toast.error(
-                              "Something went wrong. Please try again."
-                            );
+                            // toast.error(
+                            //   "Something went wrong. Please try again."
+                            // );
                           }}
                         />
                       )}

@@ -9,15 +9,30 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String    @id @default(uuid())
   name          String?
   email         String    @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+
+  stripeCustomerId String?
+
+  onboradingCompleted Boolean   @default(false)
+  userType            UserType?
+
+  //relation to other models
+  Company   Company?
+  JobSeeker JobSeeker?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum UserType {
+  COMPANY
+  JOB_SEEKER
 }
 
 model Account {
@@ -57,4 +72,61 @@ model VerificationToken {
   expires    DateTime
 
   @@id([identifier, token])
+}
+
+model Company {
+  id       String  @id @default(uuid())
+  name     String
+  location String
+  about    String
+  logo     String
+  website  String
+  xAccount String?
+
+  JobPost JobPost[]
+
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model JobSeeker {
+  id     String @id @default(uuid())
+  name   String
+  about  String
+  resume String
+
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model JobPost {
+  id String @id @default(uuid())
+
+  jobTitle        String
+  employmentType  String
+  location        String
+  salaryFrom      Int
+  salaryTo        Int
+  jobDescription  String
+  listingDuration Int
+  benefits        String[]
+
+  status       JobPostStatus @default(DRAFT)
+  applications Int           @default(0)
+
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum JobPostStatus {
+  DRAFT
+  ACTIVE
+  EXPIRED
 }
