@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { request } from "@arcjet/next";
+import { fixedWindow, request } from "@arcjet/next";
 import { Heart } from "lucide-react";
 import Image from "next/image";
 
@@ -18,6 +18,12 @@ const aj =arcjet.withRule(
   detectBot({
     mode:"LIVE",
     allow:['CATEGORY:SEARCH_ENGINE', 'CATEGORY:PREVIEW'],
+  })
+).withRule(
+  fixedWindow({
+    mode :'LIVE',
+    max:2,
+    window:"60s"
   })
 )
 
