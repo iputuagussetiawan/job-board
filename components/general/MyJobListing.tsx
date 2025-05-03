@@ -1,6 +1,8 @@
 import { prisma } from '@/app/utils/db'
 import React from 'react'
 import { EmptyState } from './EmptyState';
+import MyJobCard from './MyJobCard';
+
 
 
 async function getData(){
@@ -9,14 +11,8 @@ async function getData(){
       status:"ACTIVE",
     },
     select:{
-      jobTitle:true,
       id:true,
-      salaryFrom:true,
-      salaryTo:true,
-      employmentType:true,
-      location:true,
       createdAt:true,
-      updatedAt:true,
       company:{
         select :{
           name:true,
@@ -24,7 +20,12 @@ async function getData(){
           location:true,
           about:true
         }
-      }
+      },
+      jobTitle:true,
+      employmentType:true,
+      location:true,
+      salaryFrom:true,
+      salaryTo:true,
     },
     orderBy:{
       createdAt:"desc"
@@ -41,7 +42,7 @@ const MyJobListing = async() => {
         data.length>0 ? (
           <div className='flex flex-col gap-6'>
             {data.map((job) => (
-              <p key={job.id}>{job.jobTitle}</p>
+              <MyJobCard key={job.id} job={job}/>
             ))}
           </div>
         ) : (
