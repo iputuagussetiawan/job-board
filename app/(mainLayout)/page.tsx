@@ -17,6 +17,7 @@ type SearchParamsProps = {
 
 export default async function Home({ searchParams }: SearchParamsProps) {
   const params = await searchParams;
+  console.log(params)
   const currentPage = Number(params.page) || 1;
   const jobTypes = params.jobTypes?.split(",") || [];
   const location = params.location || "";
@@ -32,7 +33,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
 
       <div className="col-span-2 flex flex-col gap-6">
         <Suspense key={filterKey} fallback={<JobListingsLoading />}>
-          <MyJobListing />
+          <MyJobListing currentPage={currentPage} />
         </Suspense>
         {/* <Suspense key={filterKey} fallback={<JobListingsLoading />}>
           <JobListings
