@@ -34,7 +34,9 @@ export default async function Home({ searchParams }: SearchParamsProps) {
         <Suspense key={filterKey} fallback={<JobListingsLoading />}>
           <MyJobListing 
             currentPage={currentPage} 
-            jobTypes={jobTypes}/>
+            jobTypes={jobTypes}
+            location={location}  
+          />
         </Suspense>
         {/* <Suspense key={filterKey} fallback={<JobListingsLoading />}>
           <JobListings

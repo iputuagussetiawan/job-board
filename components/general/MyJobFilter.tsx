@@ -18,9 +18,8 @@ const MyJobFilter = () => {
   //get current filters
   const searchParams = useSearchParams();
   const currentJobTypes = searchParams.get("jobTypes")?.split(",") || [];
-
-
   const currentLocation = searchParams.get("location") || "";
+  console.log(currentLocation);
 
   function clearAllFilters() {
     router.push("/");
@@ -47,6 +46,10 @@ const MyJobFilter = () => {
     }
     const newValue = Array.from(current).join(",");
     router.push(`?${createQueryString("jobTypes", newValue)}`);
+  }
+
+  function handleLocationChange(location: string) {
+    router.push(`?${createQueryString("location", location)}`);
   }
   return (
     <Card className='col-span-1 h-fit'>
@@ -82,7 +85,11 @@ const MyJobFilter = () => {
         <Separator/>
         <div className="space-y-4">
           <Label className='text-lg font-semibold'>Location</Label>
-          <Select value={currentLocation}>
+          <Select
+            onValueChange={(location) => {
+              handleLocationChange(location);
+            }} 
+            value={currentLocation}>
             <SelectTrigger className='w-full'>
               <SelectValue placeholder="Select Location" />
             </SelectTrigger>

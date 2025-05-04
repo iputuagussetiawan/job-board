@@ -11,10 +11,12 @@ async function getData({
   page=1,
   pageSize=1,
   jobTypes=[],
+  location=""
   }:{
     page?:number,
     pageSize?:number,
     jobTypes?:string[],
+    location?:string  
   }
 ){
   await new Promise((resolve) => setTimeout(resolve, 2000)); //testing skelton loading you can remove it , just for testing
@@ -25,6 +27,9 @@ async function getData({
       employmentType:{
         in:jobTypes,
       }
+    }),
+    ...(location&&location!=="worldwide"&&{
+      location:location
     })
   }
   const [data,totalCount]=await Promise.all([
@@ -64,11 +69,12 @@ async function getData({
     totalPages:Math.ceil(totalCount/pageSize),
   }
 }
-const MyJobListing = async({currentPage, jobTypes}:{currentPage:number, jobTypes:string[]}) => {
+const MyJobListing = async({currentPage, jobTypes, location}:{currentPage:number, jobTypes:string[], location:string}) => {
   const {jobs, totalPages}=await getData({
     page:currentPage, 
     pageSize:1,
     jobTypes:jobTypes,
+    location:location
   });
   return (
     <>
