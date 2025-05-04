@@ -1,4 +1,5 @@
-import arcjet, { detectBot } from "@/app/utils/arcjet";
+import arcjet, { detectBot,tokenBucket  } from "@/app/utils/arcjet";
+import { auth } from "@/app/utils/auth";
 import { getFlagEmoji } from "@/app/utils/countriesList";
 import { prisma } from "@/app/utils/db";
 import { benefits } from "@/app/utils/listOfBenefits";
@@ -19,13 +20,29 @@ const aj =arcjet.withRule(
     mode:"LIVE",
     allow:['CATEGORY:SEARCH_ENGINE', 'CATEGORY:PREVIEW'],
   })
-).withRule(
-  fixedWindow({
-    mode :'LIVE',
-    max:2,
-    window:"60s"
-  })
 )
+
+function getClient(session:boolean){
+  if(session){
+    return aj.withRule(
+      tokenBucket({
+        mode:"DRY_RUN",
+        capacity:100,
+        interval:60,
+        refillRate:30
+      })
+    )
+  }else{
+    return aj.withRule(
+      tokenBucket({
+        mode:"DRY_RUN",
+        capacity:100,
+        interval:60,
+        refillRate:10
+      })
+    )
+  }
+}
 
 async function getJob(jobId: string) {
   const jobData=await prisma.jobPost.findUnique({
@@ -65,8 +82,11 @@ type Params = Promise<{jobId: string;}>
 
 const JobIdPage = async ({ params }: { params: Params }) => {
   const {jobId} = await params;
+  const session = await auth()
   const req=await request()
-  const decision=await aj.protect(req);
+  const decision=await getClient(!!session).protect(req, {
+    requested:10
+  });
 
   if(decision.isDenied()){
     throw new Error('FORBIDDEN');
