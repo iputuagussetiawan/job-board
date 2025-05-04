@@ -6,9 +6,13 @@ import { PaginationComponent } from './PaginationComponent';
 
 
 
-async function getData(
-  page: number=1,
-  pageSize: number=1
+async function getData({
+  page=1,
+  pageSize=1
+  }:{
+    page?:number,
+    pageSize?:number
+  }
 ){
   await new Promise((resolve) => setTimeout(resolve, 2000)); //testing skelton loading you can remove it , just for testing
   const skip=(page-1)*pageSize;
@@ -52,7 +56,7 @@ async function getData(
   }
 }
 const MyJobListing = async({currentPage}:{currentPage:number}) => {
-  const {jobs, totalPages}=await getData(currentPage);
+  const {jobs, totalPages}=await getData({page:currentPage, pageSize:1});
   return (
     <>
       {
