@@ -25,6 +25,7 @@ model User {
   //relation to other models
   Company       Company?
   JobSeeker     JobSeeker?
+  SavedJobPost  SavedJobPost[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -124,12 +125,27 @@ model JobPost {
 
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
+
+  SavedJobPost SavedJobPost[]
 }
 
 enum JobPostStatus {
   DRAFT
   ACTIVE
   EXPIRED
+}
+
+model SavedJobPost{
+  id String @id @default(uuid())
+
+  JobPost JobPost @relation(fields: [jobPostId], references: [id])
+  jobPostId String
+  User User? @relation(fields: [userId], references: [id])
+  userId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, jobPostId]) // 👈 This is the composite unique constraint
 }
 
 
