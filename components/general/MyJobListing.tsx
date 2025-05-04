@@ -3,24 +3,33 @@ import React from 'react'
 import { EmptyState } from './EmptyState';
 import MyJobCard from './MyJobCard';
 import { PaginationComponent } from './PaginationComponent';
+import { JobPostStatus } from '@/lib/generated/prisma';
 
 
 
 async function getData({
   page=1,
-  pageSize=1
+  pageSize=1,
+  jobTypes=[],
   }:{
     page?:number,
-    pageSize?:number
+    pageSize?:number,
+    jobTypes?:string[],
   }
 ){
   await new Promise((resolve) => setTimeout(resolve, 2000)); //testing skelton loading you can remove it , just for testing
   const skip=(page-1)*pageSize;
+  const where ={
+    status:JobPostStatus.ACTIVE,
+    ...(jobTypes.length>0 && {
+      employmentType:{
+        in:jobTypes,
+      }
+    })
+  }
   const [data,totalCount]=await Promise.all([
     prisma.jobPost.findMany({
-      where:{
-        status:"ACTIVE",
-      },
+      where:where,
       take:pageSize,
       skip:skip,
       select:{
@@ -55,8 +64,12 @@ async function getData({
     totalPages:Math.ceil(totalCount/pageSize),
   }
 }
-const MyJobListing = async({currentPage}:{currentPage:number}) => {
-  const {jobs, totalPages}=await getData({page:currentPage, pageSize:1});
+const MyJobListing = async({currentPage, jobTypes}:{currentPage:number, jobTypes:string[]}) => {
+  const {jobs, totalPages}=await getData({
+    page:currentPage, 
+    pageSize:1,
+    jobTypes:jobTypes,
+  });
   return (
     <>
       {
