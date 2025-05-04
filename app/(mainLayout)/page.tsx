@@ -31,7 +31,9 @@ export default async function Home({ searchParams }: SearchParamsProps) {
       <MyJobFilter />
 
       <div className="col-span-2 flex flex-col gap-6">
-        <MyJobListing />
+        <Suspense key={filterKey} fallback={<JobListingsLoading />}>
+          <MyJobListing />
+        </Suspense>
         {/* <Suspense key={filterKey} fallback={<JobListingsLoading />}>
           <JobListings
             currentPage={currentPage}

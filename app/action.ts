@@ -11,6 +11,7 @@ import { stripe } from "./utils/stripe";
 import { jobListingDurationPricing } from "./utils/pricingTiers";
 import { inngest } from "./utils/inngest/client";
 import { revalidatePath } from "next/cache";
+import { toast } from "sonner";
 
 const aj=arcjet.withRule(
   shield({
@@ -207,6 +208,13 @@ export async function updateJobPost(
 ) {
   const user = await requireUser();
 
+  const req = await request();
+  const decision = await aj.protect(req);
+
+  if (decision.isDenied()) {
+    throw new Error("FORBIDDEN");
+  }
+
   const validatedData = jobSchema.parse(data);
 
   await prisma.jobPost.update({
@@ -233,6 +241,12 @@ export async function updateJobPost(
 
 export async function deleteJobPost(jobId: string) {
   const user = await requireUser();
+  const req = await request();
+  const decision = await aj.protect(req);
+
+  if (decision.isDenied()) {
+    throw new Error("FORBIDDEN");
+  }
 
   await prisma.jobPost.delete({
     where: {
@@ -242,7 +256,12 @@ export async function deleteJobPost(jobId: string) {
       },
     },
   });
-
+  await inngest.send({
+    name: "job/cancel.expiration",
+    data: {
+      jobId: jobId,
+    },
+  });
   return redirect("/my-jobs");
 }
 

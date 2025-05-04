@@ -6,6 +6,7 @@ import MyJobCard from './MyJobCard';
 
 
 async function getData(){
+  await new Promise((resolve) => setTimeout(resolve, 2000)); //testing skelton loading you can remove it , just for testing
   const data=await prisma.jobPost.findMany({
     where:{
       status:"ACTIVE",

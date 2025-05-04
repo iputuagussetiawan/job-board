@@ -2,7 +2,13 @@ import { inngest } from "./client";
 import { prisma } from "../db";
 
 export const handleJobExpiration = inngest.createFunction(
-  { id: "job-expiration" },
+  { 
+    id: "job-expiration", 
+    cancelOn:[{
+        event:'job/cancel.expiration',
+        if:'event.data.jobId == async.data.jobId'
+      }] 
+    },
   { event: "job/created" },
   async ({ event, step }) => {
     const { jobId, expirationDays } = event.data;

@@ -415,7 +415,7 @@ export function EditJobForm({ jobPost }: iAppProps) {
         </Card>
 
         <Button type="submit" className="w-full" disabled={pending}>
-          {pending ? "Submitting..." : "Continue"}
+          {pending ? "Submitting..." : "Edit Job Post"}
         </Button>
       </form>
     </Form>
