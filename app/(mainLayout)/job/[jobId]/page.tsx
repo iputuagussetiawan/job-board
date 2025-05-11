@@ -8,6 +8,7 @@ import { JsonToHtml } from "@/components/general/JsonToHtml";
 import { SaveJobButton } from "@/components/general/SubmitButton";
 import { GeneralSubmitButton } from "@/components/general/SubmitButtons";
 import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { request } from "@arcjet/next";
