@@ -395,7 +395,7 @@ export function EditJobForm({ jobPost }: iAppProps) {
                         <UploadDropzone
                           endpoint="imageUploader"
                           onClientUploadComplete={(res) => {
-                            field.onChange(res[0].url);
+                            field.onChange(res[0].ufsUrl);
                             toast.success("Logo uploaded successfully!");
                           }}
                           onUploadError={() => {
