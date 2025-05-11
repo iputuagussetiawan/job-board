@@ -1,7 +1,7 @@
 import { prisma } from "@/app/utils/db";
 import { inngest } from "@/app/utils/inngest/client";
-import { Select } from "@radix-ui/react-select";
-import { stat } from "fs";
+// import { Select } from "@radix-ui/react-select";
+// import { stat } from "fs";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -25,7 +25,7 @@ export const sendPeriodicJobListings=inngest.createFunction(
   },
 
   async ({ event, step }) => {
-    const {userId, email}=event.data
+    const {userId}=event.data
 
     const totalDays=30;
     const internalDays=2

@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import React, { use, useState } from 'react'
+import React, { useState } from 'react'
 import Logo from "@/public/logo.png"
 import { Card, CardContent } from '@/components/ui/card'
 import UserTypeForm from '@/components/forms/onboarding/UserTypeForm'

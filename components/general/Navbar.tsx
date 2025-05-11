@@ -2,9 +2,9 @@ import Link from 'next/link'
 import React from 'react'
 import Logo from "@/public/logo.png"
 import Image from 'next/image'
-import { Button, buttonVariants } from '../ui/button'
+import { buttonVariants } from '../ui/button'
 import { ThemeToggle } from './ThemeToggle'
-import { auth, signOut } from '@/app/utils/auth'
+import { auth } from '@/app/utils/auth'
 import { UserDropdown } from './UserDropdown'
 
 const Navbar = async () => {

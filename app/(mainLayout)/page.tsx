@@ -1,10 +1,10 @@
-import { JobFilters } from "@/components/general/JobFilters";
-import JobListings from "@/components/general/JobListings";
+// import { JobFilters } from "@/components/general/JobFilters";
+// import JobListings from "@/components/general/JobListings";
 import JobListingsLoading from "@/components/general/JobListingsLoading";
 import MyJobFilter from "@/components/general/MyJobFilter";
 import MyJobListing from "@/components/general/MyJobListing";
-import { Card } from "@/components/ui/card";
-import Image from "next/image";
+// import { Card } from "@/components/ui/card";
+// import Image from "next/image";
 import { Suspense } from "react";
 
 type SearchParamsProps = {
