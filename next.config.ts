@@ -24,9 +24,10 @@ const nextConfig: NextConfig = {
         hostname: "images.pexels.com",
         port: "",
       },
+      { hostname: "firebase.storage.googleapis.com" },
+      { hostname: "firebasestorage.googleapis.com" },
     ],
   },
 };
-
 
 export default nextConfig;

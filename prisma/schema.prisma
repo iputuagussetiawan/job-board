@@ -108,6 +108,7 @@ model JobPost {
   id String @id @default(uuid())
 
   jobTitle        String
+  jobThumbnail    String
   employmentType  String
   location        String
   salaryFrom      Int
